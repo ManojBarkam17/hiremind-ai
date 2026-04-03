@@ -1,0 +1,53 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        generate_statistics: false
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/hiremind_db}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+      connection-timeout: 20000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+logging:
+  level:
+    root: WARN
+    com.hiremind: INFO
+  file:
+    name: /var/log/hiremind/application.log
+    max-size: 100MB
+    max-history: 30
+
+jwt:
+  secret: ${JWT_SECRET:must-be-set-in-production}
+  expiration: 86400000
+  refresh-expiration: 604800000
+
+server:
+  port: ${SERVER_PORT:8080}
+  compression:
+    enabled: true
+    min-response-size: 1024
+  ssl:
+    enabled: ${SSL_ENABLED:false}
+    key-store: ${SSL_KEY_STORE:}
+    key-store-password: ${SSL_KEY_STORE_PASSWORD:}
+    key-store-type: PKCS12
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never

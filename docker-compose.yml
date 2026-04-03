@@ -1,0 +1,107 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: hiremind_postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME:-hiremind_db}
+      POSTGRES_USER: ${DB_USER:-hiremind_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secure_password_change_me}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docs/database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./docs/database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
+    networks:
+      - hiremind_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-hiremind_user} -d ${DB_NAME:-hiremind_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: hiremind_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@hiremind.local}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - hiremind_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: hiremind_backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${DB_NAME:-hiremind_db}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER:-hiremind_user}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-secure_password_change_me}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILE:-prod}
+      JWT_SECRET: ${JWT_SECRET:-your-secret-key-change-in-production}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-86400000}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      SERVER_SERVLET_CONTEXT_PATH: /api
+      LOGGING_LEVEL_ROOT: ${LOG_LEVEL:-INFO}
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    networks:
+      - hiremind_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_URL: ${REACT_APP_API_URL:-http://localhost:8080/api}
+        REACT_APP_ENV: ${REACT_APP_ENV:-production}
+    container_name: hiremind_frontend
+    environment:
+      REACT_APP_API_URL: ${REACT_APP_API_URL:-http://localhost:8080/api}
+      REACT_APP_ENV: ${REACT_APP_ENV:-production}
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    networks:
+      - hiremind_network
+    depends_on:
+      - backend
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  hiremind_network:
+    driver: bridge
