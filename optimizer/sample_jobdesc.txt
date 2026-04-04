@@ -1,0 +1,46 @@
+Senior Full-Stack Engineer
+
+Company: CloudScale Inc.
+Location: San Francisco, CA (Remote OK)
+
+About the Role:
+We are looking for a Senior Full-Stack Engineer to join our growing engineering team. You will be responsible for designing, developing, and maintaining scalable web applications that serve millions of users. This role requires strong expertise in modern cloud-native technologies and a passion for building high-performance systems.
+
+Responsibilities:
+- Design and develop scalable microservices using Java/Spring Boot and Node.js
+- Build and maintain responsive front-end applications using React, TypeScript, and Next.js
+- Architect and implement cloud-native solutions on AWS (EC2, Lambda, S3, RDS, DynamoDB)
+- Implement CI/CD pipelines using GitHub Actions and Docker/Kubernetes
+- Write comprehensive unit and integration tests to ensure code quality
+- Optimize database performance across SQL and NoSQL databases
+- Lead technical design reviews and mentor junior engineers
+- Collaborate with product managers and designers to define technical requirements
+- Monitor application performance and implement observability solutions
+- Participate in on-call rotations and incident response
+
+Required Skills:
+- 4+ years of experience in full-stack web development
+- Strong proficiency in Java, Spring Boot, and microservices architecture
+- Experience with React, TypeScript, and modern JavaScript frameworks
+- Hands-on experience with AWS services (EC2, Lambda, S3, DynamoDB, RDS)
+- Proficiency in Docker, Kubernetes, and container orchestration
+- Experience with CI/CD pipelines and DevOps practices
+- Strong understanding of SQL (PostgreSQL, MySQL) and NoSQL (MongoDB, Redis) databases
+- Experience with RESTful APIs and GraphQL
+- Familiarity with Agile/Scrum methodologies
+
+Preferred Skills:
+- Experience with Next.js or server-side rendering frameworks
+- Knowledge of Terraform or infrastructure-as-code tools
+- Experience with Apache Kafka or event-driven architectures
+- Familiarity with machine learning or data engineering concepts
+- Experience with Elasticsearch and observability tools
+- Knowledge of system design and distributed systems
+
+Benefits:
+- Competitive salary $150K-$200K
+- Stock options
+- Remote-first culture
+- Health, dental, vision insurance
+- 401(k) matching
+- Unlimited PTO

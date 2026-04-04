@@ -1,0 +1,12 @@
+{
+  "name": "hiremind-resume-optimizer",
+  "version": "1.0.0",
+  "description": "HireMind AI Resume Optimizer - DOCX Generator",
+  "main": "generate_docx.js",
+  "scripts": {
+    "generate": "node generate_docx.js"
+  },
+  "dependencies": {
+    "docx": "^9.6.1"
+  }
+}

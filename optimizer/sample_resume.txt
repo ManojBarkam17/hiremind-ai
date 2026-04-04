@@ -1,0 +1,40 @@
+Manoj Chandra Bittu
+manojchandrabittu@gmail.com | +1-555-123-4567 | LinkedIn: linkedin.com/in/manojbittu | GitHub: github.com/ManojBarkam17
+
+Summary
+Passionate software developer with 3+ years of experience building web applications and backend services. Strong foundation in Java, Python, and modern frameworks. Seeking challenging opportunities to drive innovation and deliver impactful solutions.
+
+Experience
+
+Software Developer | TechCorp Solutions | Jan 2022 - Present
+- Developed RESTful APIs using Spring Boot serving 10K+ daily requests
+- Built responsive front-end interfaces using React and TypeScript
+- Collaborated with cross-functional teams to deliver features on time
+- Wrote unit tests achieving 85% code coverage using JUnit and Jest
+- Participated in agile ceremonies including sprint planning and retrospectives
+
+Junior Developer | InnovateTech | Jun 2020 - Dec 2021
+- Designed and implemented database schemas in MySQL and PostgreSQL
+- Created automated deployment scripts reducing release time by 40%
+- Developed microservices architecture for order management system
+- Fixed critical production bugs improving system uptime to 99.5%
+- Assisted in code reviews and mentored 2 new team members
+
+Education
+
+Bachelor of Technology in Computer Science
+University of Technology | 2016 - 2020 | GPA: 3.7/4.0
+
+Skills
+Java, Python, JavaScript, React, Spring Boot, MySQL, PostgreSQL, Git, Docker, REST APIs, HTML, CSS, Agile, JUnit
+
+Certifications
+AWS Certified Cloud Practitioner
+Oracle Certified Java SE 11 Developer
+
+Projects
+
+HireMind AI — AI-powered resume optimization platform
+- Built full-stack application with Java Spring Boot backend and React frontend
+- Integrated NLP-based resume analysis engine with ATS scoring algorithm
+- Deployed on AWS with CI/CD pipeline using GitHub Actions
